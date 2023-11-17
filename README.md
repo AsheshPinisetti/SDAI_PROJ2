@@ -39,7 +39,3 @@ python app.py
 Once the application is running open your web browser and go to http://127.0.0.1:5000/.
 Use the interface to upload an audio file.
 The application will process the file and display the classification result.
-
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
