@@ -10,7 +10,7 @@ Bird Sound Classification: The application predicts the bird species from the au
 
 ## Online Access
 Deployment on Heroku
-The deployed application can be accessed at [Heroku-App-URL].
+The deployed application can be accessed at Heroku-App-URL.
 
 
 ## Local Access
@@ -36,7 +36,7 @@ Run the Flask application:
 python app.py
 ```
 3. Usage
-Once the application is running open your web browser and go to [http://127.0.0.1:5000/].
+Once the application is running open your web browser and go to http://127.0.0.1:5000/.
 Use the interface to upload an audio file.
 The application will process the file and display the classification result.
 
