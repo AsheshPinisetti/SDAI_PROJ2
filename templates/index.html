@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audio Playback App</title>
+  </head>
+  <body>
+    <h1>Upload and Play Audio</h1>
+    <form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+    {% if filename %}
+      <h2>Audio Playback:</h2>
+      <audio controls>
+          <source src="{{ url_for('uploaded_file', filename=filename) }}" type="audio/wav">
+          Your browser does not support the audio element.
+      </audio>
+      <p class="text-center"> Specie is: <strong>{{bird}}</strong> with <strong>{{accuracy}}</strong> accuracy</p>
+    {% endif %}
+  </body>
+</html>
