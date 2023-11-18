@@ -5,7 +5,17 @@ import time
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'wav', 'mp3'}
-BIRDS = {0:"macburn", 1:"loptus"}
+BIRDS = {0: 'aldfly', 1: 'ameavo', 2: 'amebit', 3: 'amecro', 4: 'amegfi', 5: 'amekes', 
+         6: 'amepip', 7: 'amered', 8: 'amerob', 9: 'amewig', 10: 'amewoo', 11: 'amtspa', 
+         12: 'annhum', 13: 'astfly', 14: 'baisan', 15: 'baleag', 16: 'balori', 17: 'banswa', 
+         18: 'barswa', 19: 'bawwar', 20: 'belkin1', 21: 'belspa2', 22: 'bewwre', 23: 'bkbcuc', 
+         24: 'bkbmag1', 25: 'bkbwar', 26: 'bkcchi', 27: 'bkchum', 28: 'bkhgro', 29: 'bkpwar', 
+         30: 'bktspa', 31: 'blkpho', 32: 'blugrb1', 33: 'blujay', 34: 'bnhcow', 35: 'boboli', 
+         36: 'bongul', 37: 'brdowl', 38: 'brebla', 39: 'brespa', 40: 'brncre', 41: 'brnthr', 
+         42: 'brthum', 43: 'brwhaw', 44: 'btbwar', 45: 'btnwar', 46: 'btywar', 47: 'buffle', 
+         48: 'buggna', 49: 'buhvir', 50: 'bulori', 51: 'bushti', 52: 'buwtea', 53: 'buwwar'}
+
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -14,36 +24,11 @@ app.secret_key = 'supersecretkey'
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-def trim_audio(file):
-    # Determine the file extension
-    file_extension = file.filename.rsplit('.', 1)[1].lower()
-
-    # Define the converted filename
-    converted_filename = 'uploaded_audio.wav'
-    converted_file_path = os.path.join(app.config['UPLOAD_FOLDER'], converted_filename)
-
-    if file_extension == 'mp3':
-        # Load the MP3 file
-        audio = AudioSegment.from_mp3(file.filename)
-        # Convert to WAV and save
-        audio.export(converted_file_path, format="wav")
-    elif file_extension == 'wav':
-        # If it's already a WAV file, save it in the upload folder
-        file.save(converted_file_path)
-
-    return converted_filename
-    
-
-def save(file):
-    filename = 'uploaded_audio.wav' #+ file.filename.rsplit('.', 1)[1].lower()
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-    return filename
-
 def model_process(audio):
-    output = "Malera"
-    precision = 0.86
-    return output, precision
+    result = 0
+    precision = 0.86909
+    return BIRDS[result], f'{precision:.2f}'
+
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -77,15 +62,8 @@ def upload_file():
                 audio = AudioSegment.from_file(upload_path, format='wav')
             
 
-            # # Check if audio is shorter than 10 seconds (10000 milliseconds)
-            if len(audio) < 10000:
-                # Handle shorter audio - maybe skip trimming or do something else
-                # For example, just use the original audio
-                trimmed_audio = audio[:10000]
-            else:
-                # Trim to the first 10 seconds
-                trimmed_audio = audio[:10000]
-            
+            # # # Check if audio is shorter than 10 seconds (10000 milliseconds)
+            trimmed_audio = audio[:10000]
             #Process the audio file:
             bird, accuracy = model_process(trimmed_audio)
 
@@ -95,7 +73,7 @@ def upload_file():
             trimmed_audio_path = os.path.join(app.config['UPLOAD_FOLDER'], trimmed_audio_filename)
             trimmed_audio.export(trimmed_audio_path, format='wav')
 
-            return render_template('index.html', filename=trimmed_audio_filename, bird=bird, accuracy=accuracy)
+        return render_template('index.html', filename=trimmed_audio_filename, bird=bird, accuracy=accuracy)
     return render_template('index.html')
 
 @app.route('/uploads/<filename>')
