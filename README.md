@@ -9,8 +9,8 @@ Audio Processing: The app processes audio files, converting MP3s to WAV format i
 Bird Sound Classification: The application predicts the bird species from the audio file.
 
 ## Online Access
-Deployment on Heroku
-The deployed application can be accessed at Heroku-App-URL.
+Deployment on Render
+The deployed application can be accessed at [Render-App-Url](https://sdai-proj-app2.onrender.com).
 
 
 ## Local Access
