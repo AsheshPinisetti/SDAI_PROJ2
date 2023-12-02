@@ -15,7 +15,7 @@ dm-tree==0.1.8
 Encoder==1.1
 Flask==2.0.3
 flatbuffers==23.5.26
-fonttools==4.45.1
+fonttools==4.38.0
 gast==0.5.4
 google-auth==2.24.0
 google-auth-oauthlib==1.1.0
