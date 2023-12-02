@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Audio Playback App</title>
+    <title>Birdsong Audio Identification Application</title>
   </head>
   <body>
     <h1>Upload and Play Audio</h1>
-    <p>Choose carefully <strong>10 seconds</strong> of the desired audio <br>otherwise the model wil take the <strong>first 10</strong></p>
+    <p>Please select a <strong>10-second segment</strong> from the desired audio file. If no segment is chosen, the model will automatically process the <strong>first 10 seconds</strong> of the file.</p>
 
     <form method=post enctype=multipart/form-data>
       <input class="form-control" type="file" name=file accept=".wav , .mp3">
@@ -19,7 +19,7 @@
           <source src="{{ url_for('uploaded_file', filename=filename) }}" type="audio/wav">
           Your browser does not support the audio element.
       </audio>
-      <p class="text-center"> Specie is: <strong>{{bird}}</strong> with <strong>{{accuracy}}</strong> accuracy</p>
+      <p class="text-center"> Specie guess is: <strong>{{bird}}</strong></p>
     {% endif %}
   </body>
 </html>
