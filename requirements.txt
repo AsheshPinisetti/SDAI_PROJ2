@@ -9,7 +9,7 @@ charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 contourpy==1.0.6
-cycler==0.12.1
+cycler==0.11.0
 decorator==5.1.1
 dm-tree==0.1.8
 Encoder==1.1
