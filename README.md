@@ -30,7 +30,9 @@ cd SDAI_Proj2
 ```
 pip install Flask Pillow numpy tensorflow
 ```
+
 Run the Flask application: abc-temp
+
 
 ```
 python app.py
